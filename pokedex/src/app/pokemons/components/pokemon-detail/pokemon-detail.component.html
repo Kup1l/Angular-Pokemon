@@ -1,0 +1,49 @@
+<a mat-button [routerLink]="['/pokedex/']">
+  Retour
+</a>
+
+<mat-card  *ngIf="pokemon">
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="120px">
+      <mat-grid-tile [colspan] = "1" [rowspan] = "2">
+        <mat-list>
+          <img src="assets/img/official-artwork/{{pokemon.id}}.png" alt="{{pokemon.name|lowercase}}" height="150px">
+          <mat-list-item>
+            <span style="width:100%; text-align: center;">No. {{pokemon.id | number : '3.0-0'}}</span>
+          </mat-list-item>
+        </mat-list>
+
+      </mat-grid-tile>
+      <mat-grid-tile [colspan] = "1" [rowspan] = "2">
+        <mat-list>
+          <mat-list-item>
+          {{pokemon.name}}
+          <a mat-icon-button onclick="document.getElementById('cri').play()">
+            <mat-icon>play_circle</mat-icon>
+            <audio id="cri" title="cri {{pokemon.name}}" autoplay><source src="assets/audio/{{pokemon.id}}.mp3" type="audio/mp3"></audio>
+          </a>
+          </mat-list-item>
+
+          <mat-list-item>
+            <mat-chip-list>
+              <mat-chip *ngFor="let type of pokemon.types">
+                  {{type}}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+
+          <mat-list-item>
+          Taille: {{pokemon.height | number : '1.1'}} m
+          </mat-list-item>
+          <mat-list-item>
+          Poids: {{pokemon.weight | number : '1.1'}} kg
+          </mat-list-item>
+
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan] = "2" [rowspan] = "1">
+        {{pokemon.description}}
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
