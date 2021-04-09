@@ -1,0 +1,10 @@
+<mat-drawer-container style="height:calc(80%);overflow:auto">
+  <mat-drawer mode="side" opened style="padding-left: 5%;">
+    <app-pokemon-list (idEvent)="receiveId($event)"></app-pokemon-list>
+  </mat-drawer>
+  <mat-drawer-content style="padding-left: 5%;">
+    <ng-container *ngIf=id>
+      <app-pokemon-detail [id]="id"></app-pokemon-detail>
+    </ng-container>
+  </mat-drawer-content>
+</mat-drawer-container>

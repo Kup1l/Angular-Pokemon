@@ -23,6 +23,13 @@ export class PokemonService {
     )
   }
 
+  getPokemonsSearch(value : string) : Observable<PagedData<Pokemon>>{
+    let url = this.apiUrl+'/pokemons?&search='+value;
+    return this.http.get<PagedData<Pokemon>>(url).pipe(
+      catchError(this.handleError<PagedData<Pokemon>>("getPokemons"))
+    )
+  }
+
   getPokemon(id : number) : Observable<PokemonDetail | undefined>{
     let url = this.apiUrl+'/pokemons/'+id;
     return this.http.get<PokemonDetail>(url).pipe(
